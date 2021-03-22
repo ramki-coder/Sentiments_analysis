@@ -1,6 +1,5 @@
 import pandas as pd
 import nltk
-nltk.download('stopwords')
 import re
 import numpy as np
 import pickle
@@ -11,16 +10,16 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-df = pd.read_csv('D:/project_name/balanced_reviews.csv')
+df = pd.read_csv('balanced_reviews.csv')
 
 def data_cleaning():
     global features
     global labels
-    df = pd.read_csv('D:/project_name/balanced_reviews.csv')
+    df = pd.read_csv('balanced_reviews.csv')
     df.dropna(inplace = True)
     df = df[df['overall'] != 3]
     df['Positivity'] = np.where(df['overall'] > 3, 1, 0 )
-    df.to_csv('D:/project_name/balanced_reviews.csv', index = False)  
+    df.to_csv('balanced_reviews.csv', index = False)  
         
     corpus = []
     
@@ -48,8 +47,8 @@ def model_build():
     model.fit(features_train_vectorized, labels_train)
 
 def model_vocab_dump():
-    pickle.dump(vect.vocabulary_, open('D:/project_name/feature.pkl','wb'))
-    with open('D:/project_name/pickle_model.pkl', 'wb') as file:
+    pickle.dump(vect.vocabulary_, open('feature.pkl','wb'))
+    with open('pickle_model.pkl', 'wb') as file:
         pickle.dump(model, file)
 
 def main():
