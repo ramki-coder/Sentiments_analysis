@@ -19,7 +19,7 @@ def open_browser():
     
 def generate_pie_chart():
     global fig
-    dataframe = pd.read_csv('D:/project_name/balanced_reviews.csv')
+    dataframe = pd.read_csv('balanced_reviews.csv')
     labels = ['Negative','Positive']
     preds = dataframe['Positivity'].tolist()
     positive_count,negative_count = preds.count(1),preds.count(0)
