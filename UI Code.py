@@ -31,14 +31,14 @@ def load_model():
     global vocab
     global scrappedReviews
     
-    conn = sql.connect('D:/project_name/Review_db.db')
+    conn = sql.connect('Review_db.db')
     scrappedReviews = pd.read_sql('SELECT reviews FROM scrappedreviews', conn)
     scrappedReviews = scrappedReviews['reviews'].values.tolist()
     
-    file = open("D:/project_name/pickle_model (1).pkl", 'rb') 
+    file = open("pickle_model.pkl", 'rb') 
     pickle_model = pickle.load(file)
 
-    file = open("D:/project_name/features.pkl", 'rb') 
+    file = open("features.pkl", 'rb') 
     vocab = pickle.load(file)
         
 def check_review(reviewText):
